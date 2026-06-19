@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ndott Store — Joki AFK & Top Up Robux</title>
+<meta name="description" content="Ndott Store: Joki AFK Roblox dan Top Up Robux via username. Cepat, aman, semua metode pembayaran diterima.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EEF1FB;
+    --bg-alt:#E3E8FB;
+    --ink:#1B1A2E;
+    --ink-soft:#5B5A78;
+    --surface:#FFFFFF;
+    --gold:#FFB627;
+    --gold-dark:#E8960A;
+    --violet:#6C4DF6;
+    --violet-dark:#4F35D6;
+    --wa:#25D366;
+    --wa-dark:#1DA851;
+    --line:#1B1A2E;
+    --font-display:'Fredoka', sans-serif;
+    --font-body:'Plus Jakarta Sans', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+    --r-lg:20px;
+    --r-md:14px;
+    --shadow-off:6px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:var(--font-body);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  :focus-visible{ outline:3px solid var(--violet); outline-offset:3px; border-radius:4px; }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---- Hard outline + offset shadow system (signature) ---- */
+  .blocky{
+    border:3px solid var(--line);
+    border-radius:var(--r-md);
+    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
+  }
+  .blocky-btn{
+    border:3px solid var(--line);
+    border-radius:12px;
+    box-shadow: 4px 4px 0 var(--line);
+    transition: transform .12s ease, box-shadow .12s ease;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-display);
+    font-weight:600;
+    padding:14px 26px;
+    font-size:16px;
+  }
+  .blocky-btn:active,
+  .blocky-btn.is-pressed{
+    transform: translate(4px,4px);
+    box-shadow: 0 0 0 var(--line);
+  }
+  .blocky-btn--gold{ background:var(--gold); color:var(--ink); }
+  .blocky-btn--violet{ background:var(--violet); color:#fff; }
+  .blocky-btn--wa{ background:var(--wa); color:#fff; }
+  .blocky-btn--ghost{ background:var(--surface); color:var(--ink); }
+
+  /* ---- Decorative cubes ---- */
+  .cube{
+    position:absolute;
+    width:46px;
+    height:46px;
+    border-radius:10px;
+    border:3px solid var(--line);
+    transform:rotate(45deg);
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .cube{ animation: bob 5s ease-in-out infinite; }
+  }
+  @keyframes bob{
+    0%,100%{ transform:rotate(45deg) translateY(0); }
+    50%{ transform:rotate(45deg) translateY(-14px); }
+  }
+
+  /* ---- Navbar ---- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(238,241,251,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 0;
+  }
+  .logo{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:22px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-mark{
+    width:30px; height:30px;
+    background:var(--gold);
+    border:3px solid var(--line);
+    border-radius:8px;
+    transform:rotate(45deg);
+    flex-shrink:0;
+  }
+  .nav-links{
+    display:flex;
+    gap:28px;
+    font-weight:600;
+    font-size:15px;
+  }
+  .nav-cta{ display:flex; align-items:center; }
+  .nav-links a{ transition:color .15s ease; }
+  .nav-links a:hover{ color:var(--violet-dark); }
+  @media (max-width:720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---- Hero ---- */
+  .hero{
+    position:relative;
+    padding:72px 0 96px;
+    overflow:hidden;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:680px;
+  }
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    background:var(--surface);
+    border:3px solid var(--line);
+    border-radius:999px;
+    padding:6px 16px;
+    display:inline-block;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:var(--font-display);
+    font-size:clamp(38px,6vw,62px);
+    font-weight:700;
+    line-height:1.05;
+    margin-bottom:20px;
+  }
+  .hero h1 .hl{ color:var(--violet); }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .hero-cube{ z-index:1; }
+  .hero-cube.c1{ top:8%; right:14%; background:var(--violet); }
+  .hero-cube.c2{ top:55%; right:4%; width:30px; height:30px; background:var(--wa); animation-delay:.6s; }
+  .hero-cube.c3{ top:30%; right:30%; width:64px; height:64px; background:var(--gold); animation-delay:1.2s; }
+  @media (max-width:720px){
+    .hero-cube{ display:none; }
+  }
+
+  /* ---- Section shell ---- */
+  section{ padding:84px 0; }
+  .section-head{ max-width:560px; margin-bottom:48px; }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-size:clamp(28px,4vw,38px);
+    font-weight:700;
+    margin-top:10px;
+  }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:16px; }
+
+  /* ---- Layanan intro cards ---- */
+  .layanan-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:24px;
+  }
+  .layanan-card{
+    background:var(--surface);
+    padding:28px;
+  }
+  .layanan-card .tag{
+    font-family:var(--font-mono);
+    font-size:12px;
+    font-weight:600;
+    color:var(--violet-dark);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .layanan-card h3{
+    font-family:var(--font-display);
+    font-size:22px;
+    margin:10px 0 8px;
+  }
+  .layanan-card p{ color:var(--ink-soft); font-size:15px; }
+  @media (max-width:720px){
+    .layanan-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---- Pricing: Joki AFK ---- */
+  .price-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .price-card{
+    background:var(--surface);
+    padding:30px 26px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .price-card.is-popular{ background:var(--violet); color:#fff; }
+  .price-card.is-popular .price-card-tag{ background:var(--gold); color:var(--ink); }
+  .price-card-tag{
+    align-self:flex-start;
+    font-family:var(--font-mono);
+    font-size:12px;
+    font-weight:700;
+    background:var(--bg-alt);
+    border:2px solid var(--line);
+    border-radius:8px;
+    padding:4px 10px;
+  }
+  .price-card .dur{
+    font-family:var(--font-display);
+    font-size:20px;
+    font-weight:600;
+  }
+  .price-card .amount{
+    font-family:var(--font-mono);
+    font-size:34px;
+    font-weight:700;
+  }
+  .price-card .amount span{ font-size:16px; font-weight:600; }
+  @media (max-width:900px){
+    .price-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---- Robux calculator (signature) ---- */
+  .calc-wrap{
+    background:var(--surface);
+    padding:40px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .calc-left h3{
+    font-family:var(--font-display);
+    font-size:26px;
+    margin-bottom:10px;
+  }
+  .calc-left p{ color:var(--ink-soft); font-size:15px; margin-bottom:20px; }
+  .quick-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .quick-btn{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:14px;
+    background:var(--bg-alt);
+    border:2px solid var(--line);
+    border-radius:10px;
+    padding:8px 14px;
+    transition:background .15s ease;
+  }
+  .quick-btn:hover{ background:var(--gold); }
+  .quick-btn.is-active{ background:var(--violet); color:#fff; }
+
+  .input-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--bg-alt);
+    border:3px solid var(--line);
+    border-radius:12px;
+    padding:6px 6px 6px 16px;
+  }
+  .input-row label{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); white-space:nowrap; }
+  .input-row input{
+    flex:1;
+    border:none;
+    background:transparent;
+    font-family:var(--font-mono);
+    font-size:18px;
+    font-weight:700;
+    width:100%;
+    padding:10px 0;
+    color:var(--ink);
+  }
+  .input-row input:focus{ outline:none; }
+  .unit{ font-family:var(--font-mono); font-weight:600; color:var(--ink-soft); padding-right:10px; }
+
+  .calc-right{
+    background:var(--bg-alt);
+    border:3px solid var(--line);
+    border-radius:var(--r-md);
+    padding:30px;
+    text-align:center;
+  }
+  .calc-right .label{
+    font-family:var(--font-mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .calc-right .total{
+    font-family:var(--font-mono);
+    font-weight:700;
+    font-size:38px;
+    color:var(--violet-dark);
+    margin-bottom:22px;
+    word-break:break-word;
+  }
+  @media (max-width:900px){
+    .calc-wrap{ grid-template-columns:1fr; padding:28px; }
+  }
+
+  /* ---- Payment ---- */
+  .pay-chips{ display:flex; flex-wrap:wrap; gap:14px; }
+  .pay-chip{
+    background:var(--surface);
+    border:3px solid var(--line);
+    border-radius:999px;
+    padding:10px 22px;
+    font-weight:700;
+    font-size:15px;
+  }
+
+  /* ---- Contact CTA ---- */
+  .cta-band{
+    background:var(--ink);
+    color:#fff;
+    border-radius:var(--r-lg);
+    padding:56px 40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-band h2{
+    font-family:var(--font-display);
+    font-size:clamp(26px,4vw,36px);
+    margin-bottom:14px;
+  }
+  .cta-band p{ color:#C7C5E8; margin-bottom:30px; font-size:16px; }
+  .cta-phone{
+    font-family:var(--font-mono);
+    font-size:15px;
+    color:#C7C5E8;
+    margin-top:18px;
+  }
+  .cta-phone strong{ color:#fff; }
+
+  /* ---- Footer ---- */
+  footer{
+    padding:32px 0 100px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+
+  /* ---- Floating WA button ---- */
+  .float-wa{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    z-index:60;
+    background:var(--wa);
+    color:#fff;
+    border:3px solid var(--line);
+    border-radius:999px;
+    padding:14px 22px;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:15px;
+    box-shadow:5px 5px 0 var(--line);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .float-wa:hover{ transform:translate(3px,3px); box-shadow:2px 2px 0 var(--line); }
+  @media (max-width:480px){
+    .float-wa span{ display:none; }
+    .float-wa{ padding:14px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo"><span class="logo-mark" aria-hidden="true"></span>Ndott Store</div>
+    <ul class="nav-links">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#joki-afk">Joki AFK</a></li>
+      <li><a href="#robux">Top Up Robux</a></li>
+      <li><a href="#pembayaran">Pembayaran</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">Chat WA</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Roblox · Joki & Top Up</span>
+    <h1>Main lebih santai,<br>biar <span class="hl">Ndott Store</span> yang jokiin.</h1>
+    <p class="lede">Joki AFK harian sampai bulanan, dan top up Robux langsung lewat username — nggak perlu password. Proses cepat, harga jelas dari awal.</p>
+    <div class="hero-ctas">
+      <a class="blocky-btn blocky-btn--violet" href="#joki-afk">Lihat Harga Joki AFK</a>
+      <a class="blocky-btn blocky-btn--gold" href="#robux">Hitung Harga Robux</a>
+    </div>
+  </div>
+  <span class="cube hero-cube c1" aria-hidden="true"></span>
+  <span class="cube hero-cube c2" aria-hidden="true"></span>
+  <span class="cube hero-cube c3" aria-hidden="true"></span>
+</header>
+
+<section id="layanan">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Layanan</span>
+      <h2>Dua hal yang paling sering dicari pemain Roblox</h2>
+    </div>
+    <div class="layanan-grid">
+      <div class="layanan-card blocky">
+        <span class="tag">Layanan 01</span>
+        <h3>Joki AFK</h3>
+        <p>Akun kamu tetap online dan AFK farming berjalan, kamu tinggal lanjutin aktivitas lain. Tersedia paket harian, mingguan, dan bulanan.</p>
+      </div>
+      <div class="layanan-card blocky">
+        <span class="tag">Layanan 02</span>
+        <h3>Top Up Robux via Username</h3>
+        <p>Robux masuk langsung ke akun lewat username, tanpa perlu kasih password. Harga berkelipatan tetap dari 100 Robux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="joki-afk">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Harga</span>
+      <h2>Paket Joki AFK</h2>
+      <p>Pilih durasi sesuai kebutuhan. Tinggal klik pesan, dan kami lanjut via WhatsApp.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card blocky">
+        <span class="price-card-tag">1 Hari</span>
+        <span class="dur">Cocok buat coba-coba</span>
+        <span class="amount">Rp4.000</span>
+        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Hari (Rp4.000).">Pesan Sekarang</a>
+      </div>
+
+      <div class="price-card blocky is-popular">
+        <span class="price-card-tag">1 Minggu</span>
+        <span class="dur">Paling sering dipilih</span>
+        <span class="amount">Rp20.000</span>
+        <a class="blocky-btn blocky-btn--gold" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Minggu (Rp20.000).">Pesan Sekarang</a>
+      </div>
+
+      <div class="price-card blocky">
+        <span class="price-card-tag">1 Bulan</span>
+        <span class="dur">Paling hemat per hari</span>
+        <span class="amount">Rp55.000</span>
+        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Bulan (Rp55.000).">Pesan Sekarang</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="robux">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Kalkulator</span>
+      <h2>Top Up Robux via Username</h2>
+      <p>100 Robux = Rp15.000. Tinggal masukin jumlah Robux yang kamu mau, harga otomatis kehitung.</p>
+    </div>
+
+    <div class="calc-wrap blocky">
+      <div class="calc-left">
+        <h3>Berapa Robux yang kamu mau?</h3>
+        <p>Pilih cepat di bawah, atau ketik sendiri jumlahnya.</p>
+        <div class="quick-row" id="quickRow">
+          <button class="quick-btn" data-amount="100">100</button>
+          <button class="quick-btn" data-amount="300">300</button>
+          <button class="quick-btn" data-amount="500">500</button>
+          <button class="quick-btn" data-amount="1000">1000</button>
+        </div>
+        <div class="input-row">
+          <label for="robuxInput">Jumlah</label>
+          <input type="number" id="robuxInput" min="100" step="100" value="100" aria-label="Jumlah Robux">
+          <span class="unit">Robux</span>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="label">Total harga</div>
+        <div class="total" id="calcTotal">Rp15.000</div>
+        <a class="blocky-btn blocky-btn--wa" id="calcWaBtn" href="#" target="_blank" rel="noopener">Pesan via WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pembayaran">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Pembayaran</span>
+      <h2>Semua metode pembayaran kami terima</h2>
+      <p>Bayar pakai cara yang paling nyaman buat kamu.</p>
+    </div>
+    <div class="pay-chips">
+      <span class="pay-chip">QRIS</span>
+      <span class="pay-chip">Transfer Bank</span>
+      <span class="pay-chip">DANA</span>
+      <span class="pay-chip">OVO</span>
+      <span class="pay-chip">GoPay</span>
+      <span class="pay-chip">ShopeePay</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontak">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Order tinggal chat aja</h2>
+      <p>Tanya paket, tanya harga, atau langsung order — kami balas cepat lewat WhatsApp.</p>
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">Chat WhatsApp Sekarang</a>
+      <div class="cta-phone">WhatsApp: <strong>0821-2486-7102</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> Ndott Store. Joki AFK & Top Up Robux.
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener" aria-label="Chat WhatsApp Ndott Store">
+  <span>Chat WA</span>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Static "Pesan Sekarang" buttons with prefilled WA message
+  document.querySelectorAll('[data-wa-msg]').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      var msg = encodeURIComponent(btn.getAttribute('data-wa-msg'));
+      window.open('https://wa.me/6282124867102?text=' + msg, '_blank', 'noopener');
+    });
+  });
+
+  // Robux calculator
+  var input = document.getElementById('robuxInput');
+  var total = document.getElementById('calcTotal');
+  var waBtn = document.getElementById('calcWaBtn');
+  var quickBtns = document.querySelectorAll('.quick-btn');
+  var PRICE_PER_100 = 15000;
+
+  function formatRupiah(n){
+    return 'Rp' + n.toLocaleString('id-ID');
+  }
+
+  function recalc(){
+    var robux = parseInt(input.value, 10);
+    if (isNaN(robux) || robux < 0) robux = 0;
+    var price = Math.round((robux / 100) * PRICE_PER_100);
+    total.textContent = formatRupiah(price);
+
+    quickBtns.forEach(function(b){
+      b.classList.toggle('is-active', parseInt(b.getAttribute('data-amount'),10) === robux);
+    });
+
+    var msg = encodeURIComponent(
+      'Halo Ndott Store, saya mau top up ' + robux + ' Robux via username (' + formatRupiah(price) + ').'
+    );
+    waBtn.href = 'https://wa.me/6282124867102?text=' + msg;
+  }
+
+  quickBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      input.value = btn.getAttribute('data-amount');
+      recalc();
+    });
+  });
+
+  input.addEventListener('input', recalc);
+  recalc();
+</script>
+
+</body>
+</html>
