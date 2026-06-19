@@ -4,24 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ndott Store — Joki AFK & Top Up Robux</title>
-<meta name="description" content="Ndott Store: Joki AFK Roblox dan Top Up Robux via username. Cepat, aman, semua metode pembayaran diterima.">
+<meta name="description" content="Ndott Store: Joki AFK Fish It Roblox dan Top Up Robux via username. Cepat, aman, semua metode pembayaran diterima.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#EEF1FB;
-    --bg-alt:#E3E8FB;
-    --ink:#1B1A2E;
-    --ink-soft:#5B5A78;
-    --surface:#FFFFFF;
-    --gold:#FFB627;
-    --gold-dark:#E8960A;
-    --violet:#6C4DF6;
-    --violet-dark:#4F35D6;
+    --ocean-deep:#0A2342;
+    --ocean-mid:#0E3D6E;
+    --ocean-bright:#1565C0;
+    --teal:#0097A7;
+    --teal-light:#00BCD4;
+    --seafoam:#00E5CC;
+    --sand:#FFD54F;
+    --sand-dark:#F9A825;
+    --coral:#FF6B6B;
+    --coral-dark:#E53935;
     --wa:#25D366;
     --wa-dark:#1DA851;
-    --line:#1B1A2E;
+    --surface:#FFFFFF;
+    --surface-glass:rgba(255,255,255,0.08);
+    --ink:#0A2342;
+    --ink-soft:#546E8A;
+    --line:#0A2342;
     --font-display:'Fredoka', sans-serif;
     --font-body:'Plus Jakarta Sans', sans-serif;
     --font-mono:'JetBrains Mono', monospace;
@@ -34,7 +39,7 @@
   html{ scroll-behavior:smooth; }
   body{
     font-family:var(--font-body);
-    background:var(--bg);
+    background:#EAF4FB;
     color:var(--ink);
     line-height:1.5;
     overflow-x:hidden;
@@ -43,7 +48,7 @@
   a{ color:inherit; text-decoration:none; }
   ul{ list-style:none; }
   button{ font-family:inherit; cursor:pointer; border:none; background:none; }
-  :focus-visible{ outline:3px solid var(--violet); outline-offset:3px; border-radius:4px; }
+  :focus-visible{ outline:3px solid var(--teal); outline-offset:3px; border-radius:4px; }
 
   .wrap{
     max-width:1120px;
@@ -51,7 +56,7 @@
     padding:0 24px;
   }
 
-  /* ---- Hard outline + offset shadow system (signature) ---- */
+  /* ---- Blocky system ---- */
   .blocky{
     border:3px solid var(--line);
     border-radius:var(--r-md);
@@ -70,73 +75,53 @@
     padding:14px 26px;
     font-size:16px;
   }
-  .blocky-btn:active,
-  .blocky-btn.is-pressed{
-    transform: translate(4px,4px);
-    box-shadow: 0 0 0 var(--line);
-  }
-  .blocky-btn--gold{ background:var(--gold); color:var(--ink); }
-  .blocky-btn--violet{ background:var(--violet); color:#fff; }
+  .blocky-btn:hover{ transform:translate(2px,2px); box-shadow:2px 2px 0 var(--line); }
+  .blocky-btn:active{ transform:translate(4px,4px); box-shadow:0 0 0 var(--line); }
+  .blocky-btn--teal{ background:var(--teal-light); color:var(--ink); }
+  .blocky-btn--sand{ background:var(--sand); color:var(--ink); }
+  .blocky-btn--coral{ background:var(--coral); color:#fff; }
   .blocky-btn--wa{ background:var(--wa); color:#fff; }
   .blocky-btn--ghost{ background:var(--surface); color:var(--ink); }
+  .blocky-btn--ocean{ background:var(--ocean-mid); color:#fff; }
 
-  /* ---- Decorative cubes ---- */
-  .cube{
-    position:absolute;
-    width:46px;
-    height:46px;
-    border-radius:10px;
-    border:3px solid var(--line);
-    transform:rotate(45deg);
-  }
-  @media (prefers-reduced-motion:no-preference){
-    .cube{ animation: bob 5s ease-in-out infinite; }
-  }
-  @keyframes bob{
-    0%,100%{ transform:rotate(45deg) translateY(0); }
-    50%{ transform:rotate(45deg) translateY(-14px); }
-  }
-
-  /* ---- Navbar ---- */
+  /* ---- Nav ---- */
   .nav{
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(238,241,251,.92);
-    backdrop-filter:blur(6px);
+    background:rgba(10,35,66,0.96);
+    backdrop-filter:blur(8px);
     border-bottom:3px solid var(--line);
   }
   .nav-inner{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:16px 0;
+    padding:14px 0;
   }
   .logo{
     font-family:var(--font-display);
     font-weight:700;
     font-size:22px;
+    color:#fff;
     display:flex;
     align-items:center;
     gap:10px;
   }
-  .logo-mark{
-    width:30px; height:30px;
-    background:var(--gold);
-    border:3px solid var(--line);
-    border-radius:8px;
-    transform:rotate(45deg);
-    flex-shrink:0;
+  .logo-icon{
+    font-size:26px;
+    line-height:1;
   }
   .nav-links{
     display:flex;
     gap:28px;
     font-weight:600;
     font-size:15px;
+    color:rgba(255,255,255,0.75);
   }
-  .nav-cta{ display:flex; align-items:center; }
   .nav-links a{ transition:color .15s ease; }
-  .nav-links a:hover{ color:var(--violet-dark); }
+  .nav-links a:hover{ color:var(--seafoam); }
+  .nav-cta{ display:flex; align-items:center; }
   @media (max-width:720px){
     .nav-links{ display:none; }
   }
@@ -144,63 +129,125 @@
   /* ---- Hero ---- */
   .hero{
     position:relative;
-    padding:72px 0 96px;
+    background: linear-gradient(160deg, var(--ocean-deep) 0%, var(--ocean-mid) 55%, #0a4b7a 100%);
+    padding:80px 0 0;
     overflow:hidden;
+    min-height:560px;
   }
   .hero-inner{
     position:relative;
     z-index:2;
-    max-width:680px;
+    max-width:640px;
+    padding-bottom:80px;
   }
   .eyebrow{
     font-family:var(--font-mono);
     font-weight:600;
-    font-size:13px;
-    letter-spacing:.08em;
+    font-size:12px;
+    letter-spacing:.1em;
     text-transform:uppercase;
-    background:var(--surface);
-    border:3px solid var(--line);
+    background:rgba(255,255,255,0.12);
+    border:2px solid rgba(255,255,255,0.25);
     border-radius:999px;
     padding:6px 16px;
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
     margin-bottom:24px;
+    color:var(--seafoam);
   }
   .hero h1{
     font-family:var(--font-display);
-    font-size:clamp(38px,6vw,62px);
+    font-size:clamp(36px,5.5vw,60px);
     font-weight:700;
-    line-height:1.05;
+    line-height:1.08;
     margin-bottom:20px;
+    color:#fff;
   }
-  .hero h1 .hl{ color:var(--violet); }
+  .hero h1 .hl{ color:var(--seafoam); }
   .hero p.lede{
-    font-size:18px;
-    color:var(--ink-soft);
-    max-width:520px;
-    margin-bottom:32px;
+    font-size:17px;
+    color:rgba(255,255,255,0.72);
+    max-width:500px;
+    margin-bottom:36px;
   }
   .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
 
-  .hero-cube{ z-index:1; }
-  .hero-cube.c1{ top:8%; right:14%; background:var(--violet); }
-  .hero-cube.c2{ top:55%; right:4%; width:30px; height:30px; background:var(--wa); animation-delay:.6s; }
-  .hero-cube.c3{ top:30%; right:30%; width:64px; height:64px; background:var(--gold); animation-delay:1.2s; }
-  @media (max-width:720px){
-    .hero-cube{ display:none; }
+  /* Wave divider */
+  .wave-divider{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    line-height:0;
+    z-index:1;
+  }
+  .wave-divider svg{ display:block; width:100%; }
+
+  /* Floating fish decorations */
+  .fish-deco{
+    position:absolute;
+    font-size:36px;
+    opacity:0.18;
+    pointer-events:none;
+    z-index:1;
+    animation: fishswim 8s ease-in-out infinite;
+  }
+  .fish-deco.f1{ top:15%; right:8%; font-size:56px; animation-delay:0s; }
+  .fish-deco.f2{ top:55%; right:22%; font-size:32px; animation-delay:1.5s; }
+  .fish-deco.f3{ top:30%; right:35%; font-size:48px; animation-delay:3s; opacity:0.12; }
+  .fish-deco.f4{ top:70%; right:6%; font-size:28px; animation-delay:2s; }
+  @keyframes fishswim{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    33%{ transform:translateY(-12px) rotate(3deg); }
+    66%{ transform:translateY(6px) rotate(-2deg); }
+  }
+  @media(max-width:720px){ .fish-deco{ display:none; } }
+
+  /* Bubble dots */
+  .bubble{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    border:2px solid rgba(255,255,255,0.15);
+    animation: bubble-rise 6s ease-in-out infinite;
+    pointer-events:none;
+  }
+  .bubble.b1{ width:20px;height:20px; bottom:20%;right:12%;animation-delay:0s; }
+  .bubble.b2{ width:12px;height:12px; bottom:40%;right:18%;animation-delay:1s; }
+  .bubble.b3{ width:30px;height:30px; bottom:10%;right:28%;animation-delay:2.5s; }
+  @keyframes bubble-rise{
+    0%{ transform:translateY(0); opacity:.6; }
+    100%{ transform:translateY(-80px); opacity:0; }
   }
 
   /* ---- Section shell ---- */
-  section{ padding:84px 0; }
+  section{ padding:80px 0; }
   .section-head{ max-width:560px; margin-bottom:48px; }
+  .section-label{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    background:var(--ocean-mid);
+    color:#fff;
+    border:2px solid var(--line);
+    border-radius:999px;
+    padding:5px 14px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-bottom:14px;
+  }
   .section-head h2{
     font-family:var(--font-display);
-    font-size:clamp(28px,4vw,38px);
+    font-size:clamp(26px,4vw,36px);
     font-weight:700;
-    margin-top:10px;
+    color:var(--ocean-deep);
+    margin-bottom:12px;
   }
-  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:16px; }
+  .section-head p{ color:var(--ink-soft); font-size:16px; }
 
-  /* ---- Layanan intro cards ---- */
+  /* ---- Layanan cards ---- */
   .layanan-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -208,27 +255,67 @@
   }
   .layanan-card{
     background:var(--surface);
-    padding:28px;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .layanan-card::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; right:0;
+    height:4px;
+  }
+  .layanan-card.card-afk::before{ background:linear-gradient(90deg, var(--teal-light), var(--seafoam)); }
+  .layanan-card.card-robux::before{ background:linear-gradient(90deg, var(--sand), var(--coral)); }
+  .layanan-icon{
+    font-size:44px;
+    margin-bottom:16px;
+    display:block;
+    line-height:1;
   }
   .layanan-card .tag{
     font-family:var(--font-mono);
-    font-size:12px;
+    font-size:11px;
     font-weight:600;
-    color:var(--violet-dark);
+    color:var(--teal);
     text-transform:uppercase;
-    letter-spacing:.06em;
+    letter-spacing:.07em;
+    margin-bottom:8px;
+    display:block;
   }
   .layanan-card h3{
     font-family:var(--font-display);
     font-size:22px;
-    margin:10px 0 8px;
+    color:var(--ocean-deep);
+    margin-bottom:10px;
   }
   .layanan-card p{ color:var(--ink-soft); font-size:15px; }
-  @media (max-width:720px){
-    .layanan-grid{ grid-template-columns:1fr; }
+  .layanan-card .card-badges{
+    margin-top:18px;
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
   }
+  .badge{
+    font-family:var(--font-mono);
+    font-size:11px;
+    font-weight:600;
+    background:#EAF4FB;
+    border:2px solid var(--line);
+    border-radius:8px;
+    padding:4px 10px;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .layanan-card.card-gig::before{ background:linear-gradient(90deg, var(--coral), var(--sand)); }
+  .layanan-grid--3{ grid-template-columns:1fr 1fr 1fr; }
+  @media (max-width:900px){ .layanan-grid--3{ grid-template-columns:1fr; } }
 
-  /* ---- Pricing: Joki AFK ---- */
+  /* ---- Joki AFK pricing ---- */
+  .price-section{
+    background: linear-gradient(180deg, #EAF4FB 0%, #D0EAFA 100%);
+  }
   .price-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -236,41 +323,65 @@
   }
   .price-card{
     background:var(--surface);
-    padding:30px 26px;
+    padding:28px 24px;
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:16px;
+    position:relative;
+    overflow:hidden;
   }
-  .price-card.is-popular{ background:var(--violet); color:#fff; }
-  .price-card.is-popular .price-card-tag{ background:var(--gold); color:var(--ink); }
+  .price-card.is-popular{
+    background:var(--ocean-deep);
+    color:#fff;
+  }
+  .price-card.is-popular .price-card-tag{ background:var(--sand); color:var(--ink); }
+  .price-card.is-popular .dur{ color:rgba(255,255,255,0.7); }
+  .price-card.is-popular .amount{ color:var(--seafoam); }
+  .price-card-emo{
+    font-size:40px;
+    line-height:1;
+  }
   .price-card-tag{
     align-self:flex-start;
     font-family:var(--font-mono);
     font-size:12px;
     font-weight:700;
-    background:var(--bg-alt);
+    background:#EAF4FB;
     border:2px solid var(--line);
     border-radius:8px;
     padding:4px 10px;
   }
   .price-card .dur{
     font-family:var(--font-display);
-    font-size:20px;
+    font-size:18px;
     font-weight:600;
+    color:var(--ink-soft);
   }
   .price-card .amount{
     font-family:var(--font-mono);
-    font-size:34px;
+    font-size:32px;
     font-weight:700;
+    color:var(--ocean-deep);
   }
-  .price-card .amount span{ font-size:16px; font-weight:600; }
-  @media (max-width:900px){
-    .price-grid{ grid-template-columns:1fr; }
+  .popular-ribbon{
+    position:absolute;
+    top:16px; right:-24px;
+    background:var(--seafoam);
+    color:var(--ink);
+    font-family:var(--font-mono);
+    font-size:10px;
+    font-weight:700;
+    padding:4px 32px;
+    transform:rotate(35deg);
+    border:2px solid var(--line);
+    letter-spacing:.06em;
   }
+  @media (max-width:900px){ .price-grid{ grid-template-columns:1fr; } }
 
-  /* ---- Robux calculator (signature) ---- */
+  /* ---- Robux calc ---- */
+  .calc-section{ background:#fff; }
   .calc-wrap{
-    background:var(--surface);
+    background:linear-gradient(135deg, #EAF4FB 0%, #D0E8F5 100%);
     padding:40px;
     display:grid;
     grid-template-columns:1.1fr .9fr;
@@ -279,29 +390,36 @@
   }
   .calc-left h3{
     font-family:var(--font-display);
-    font-size:26px;
-    margin-bottom:10px;
+    font-size:24px;
+    color:var(--ocean-deep);
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
   }
   .calc-left p{ color:var(--ink-soft); font-size:15px; margin-bottom:20px; }
   .quick-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
   .quick-btn{
     font-family:var(--font-mono);
     font-weight:600;
-    font-size:14px;
-    background:var(--bg-alt);
+    font-size:13px;
+    background:#fff;
     border:2px solid var(--line);
     border-radius:10px;
     padding:8px 14px;
-    transition:background .15s ease;
+    transition:background .15s ease, color .15s ease;
+    display:flex;
+    align-items:center;
+    gap:5px;
   }
-  .quick-btn:hover{ background:var(--gold); }
-  .quick-btn.is-active{ background:var(--violet); color:#fff; }
+  .quick-btn:hover{ background:var(--sand); }
+  .quick-btn.is-active{ background:var(--ocean-mid); color:#fff; border-color:var(--ocean-mid); }
 
   .input-row{
     display:flex;
     align-items:center;
     gap:10px;
-    background:var(--bg-alt);
+    background:#fff;
     border:3px solid var(--line);
     border-radius:12px;
     padding:6px 6px 6px 16px;
@@ -322,33 +440,133 @@
   .unit{ font-family:var(--font-mono); font-weight:600; color:var(--ink-soft); padding-right:10px; }
 
   .calc-right{
-    background:var(--bg-alt);
+    background:var(--ocean-deep);
     border:3px solid var(--line);
     border-radius:var(--r-md);
-    padding:30px;
+    padding:32px;
     text-align:center;
+    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
   }
+  .calc-right .robux-icon{ font-size:48px; margin-bottom:10px; }
   .calc-right .label{
     font-family:var(--font-mono);
-    font-size:13px;
+    font-size:12px;
     text-transform:uppercase;
-    letter-spacing:.06em;
-    color:var(--ink-soft);
+    letter-spacing:.07em;
+    color:rgba(255,255,255,0.55);
     margin-bottom:8px;
   }
   .calc-right .total{
     font-family:var(--font-mono);
     font-weight:700;
-    font-size:38px;
-    color:var(--violet-dark);
-    margin-bottom:22px;
+    font-size:36px;
+    color:var(--seafoam);
+    margin-bottom:24px;
     word-break:break-word;
   }
-  @media (max-width:900px){
-    .calc-wrap{ grid-template-columns:1fr; padding:28px; }
+  @media (max-width:900px){ .calc-wrap{ grid-template-columns:1fr; padding:28px; } }
+
+  /* ---- GIG Calculator ---- */
+  .gig-section{ background:linear-gradient(180deg,#fff5f5 0%,#fff 100%); }
+  .gig-wrap{
+    background:linear-gradient(135deg,#1a0a00 0%,#2d1200 60%,#3a1800 100%);
+    padding:40px;
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
   }
+  .gig-wrap .calc-left h3{ color:#fff; }
+  .gig-wrap .calc-left p{ color:rgba(255,255,255,0.65); }
+  .gig-rate-info{
+    background:rgba(255,255,255,0.08);
+    border:2px solid rgba(255,107,107,0.5);
+    border-radius:12px;
+    padding:14px 18px;
+    margin-bottom:20px;
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:rgba(255,255,255,0.8);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .gig-rate-info strong{ color:var(--sand); }
+  .gig-quick-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
+  .gig-quick-btn{
+    font-family:var(--font-mono);
+    font-weight:600;
+    font-size:13px;
+    background:rgba(255,255,255,0.1);
+    border:2px solid rgba(255,255,255,0.25);
+    border-radius:10px;
+    padding:8px 14px;
+    color:#fff;
+    transition:background .15s ease;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .gig-quick-btn:hover{ background:rgba(255,107,107,0.4); }
+  .gig-quick-btn.is-active{ background:var(--coral); color:#fff; border-color:var(--coral-dark); }
+  .gig-input-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,0.1);
+    border:3px solid rgba(255,255,255,0.25);
+    border-radius:12px;
+    padding:6px 6px 6px 16px;
+  }
+  .gig-input-row label{ font-family:var(--font-mono); font-size:13px; color:rgba(255,255,255,0.55); white-space:nowrap; }
+  .gig-input-row input{
+    flex:1;
+    border:none;
+    background:transparent;
+    font-family:var(--font-mono);
+    font-size:18px;
+    font-weight:700;
+    width:100%;
+    padding:10px 0;
+    color:#fff;
+  }
+  .gig-input-row input:focus{ outline:none; }
+  .gig-unit{ font-family:var(--font-mono); font-weight:600; color:rgba(255,255,255,0.5); padding-right:10px; }
+  .gig-right{
+    background:var(--coral);
+    border:3px solid var(--line);
+    border-radius:var(--r-md);
+    padding:32px;
+    text-align:center;
+    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
+  }
+  .gig-right .gig-icon{ font-size:48px; margin-bottom:10px; }
+  .gig-right .label{
+    font-family:var(--font-mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    color:rgba(255,255,255,0.7);
+    margin-bottom:4px;
+  }
+  .gig-right .gig-robux-line{
+    font-family:var(--font-mono);
+    font-size:14px;
+    color:rgba(255,255,255,0.8);
+    margin-bottom:8px;
+  }
+  .gig-right .total{
+    font-family:var(--font-mono);
+    font-weight:700;
+    font-size:36px;
+    color:#fff;
+    margin-bottom:24px;
+    word-break:break-word;
+  }
+  @media (max-width:900px){ .gig-wrap{ grid-template-columns:1fr; padding:28px; } }
 
   /* ---- Payment ---- */
+  .pay-section{ background:linear-gradient(180deg, #D0EAFA 0%, #EAF4FB 100%); }
   .pay-chips{ display:flex; flex-wrap:wrap; gap:14px; }
   .pay-chip{
     background:var(--surface);
@@ -357,31 +575,95 @@
     padding:10px 22px;
     font-weight:700;
     font-size:15px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:3px 3px 0 var(--line);
   }
+  .pay-chip-icon{ font-size:18px; }
 
-  /* ---- Contact CTA ---- */
-  .cta-band{
-    background:var(--ink);
-    color:#fff;
+  /* ---- Community ---- */
+  .community-card{
+    background:linear-gradient(135deg, var(--ocean-deep), var(--ocean-mid));
+    border:3px solid var(--line);
     border-radius:var(--r-lg);
-    padding:56px 40px;
+    padding:36px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .community-card::after{
+    content:'🎣';
+    position:absolute;
+    right:220px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:80px;
+    opacity:0.08;
+    pointer-events:none;
+  }
+  .community-card .tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    font-weight:600;
+    color:var(--seafoam);
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin-bottom:8px;
+    display:block;
+  }
+  .community-card h3{
+    font-family:var(--font-display);
+    font-size:24px;
+    color:#fff;
+    margin-bottom:8px;
+  }
+  .community-card p{ color:rgba(255,255,255,0.65); font-size:15px; }
+
+  /* ---- CTA Band ---- */
+  .cta-band{
+    background:var(--ocean-deep);
+    border:3px solid var(--line);
+    border-radius:var(--r-lg);
+    padding:60px 40px;
     text-align:center;
     position:relative;
     overflow:hidden;
   }
+  .cta-band-emo{
+    font-size:64px;
+    margin-bottom:20px;
+    display:block;
+    animation: fishswim 5s ease-in-out infinite;
+  }
   .cta-band h2{
     font-family:var(--font-display);
-    font-size:clamp(26px,4vw,36px);
+    font-size:clamp(24px,4vw,34px);
+    color:#fff;
     margin-bottom:14px;
   }
-  .cta-band p{ color:#C7C5E8; margin-bottom:30px; font-size:16px; }
+  .cta-band p{ color:rgba(255,255,255,0.65); margin-bottom:30px; font-size:16px; }
   .cta-phone{
     font-family:var(--font-mono);
-    font-size:15px;
-    color:#C7C5E8;
+    font-size:14px;
+    color:rgba(255,255,255,0.5);
     margin-top:18px;
   }
-  .cta-phone strong{ color:#fff; }
+  .cta-phone strong{ color:var(--seafoam); }
+  /* background fish in cta */
+  .cta-bg-fish{
+    position:absolute;
+    font-size:100px;
+    opacity:0.05;
+    pointer-events:none;
+  }
+  .cta-bg-fish.l{ left:-20px; top:50%; transform:translateY(-50%); }
+  .cta-bg-fish.r{ right:-20px; top:50%; transform:translateY(-50%) scaleX(-1); }
 
   /* ---- Footer ---- */
   footer{
@@ -389,9 +671,13 @@
     text-align:center;
     color:var(--ink-soft);
     font-size:14px;
+    background:#EAF4FB;
+    border-top:3px solid rgba(10,35,66,0.12);
   }
+  footer .footer-inner{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  footer .footer-logo{ font-family:var(--font-display); font-weight:700; color:var(--ocean-deep); font-size:18px; display:flex; align-items:center; gap:6px; }
 
-  /* ---- Floating WA button ---- */
+  /* ---- Floating WA ---- */
   .float-wa{
     position:fixed;
     bottom:24px;
@@ -416,112 +702,276 @@
     .float-wa span{ display:none; }
     .float-wa{ padding:14px; }
   }
+
+  /* ---- Fish facts strip ---- */
+  .fish-strip{
+    background:var(--ocean-deep);
+    border-top:3px solid var(--line);
+    border-bottom:3px solid var(--line);
+    overflow:hidden;
+    padding:12px 0;
+  }
+  .fish-strip-track{
+    display:flex;
+    gap:40px;
+    animation: marquee 22s linear infinite;
+    white-space:nowrap;
+  }
+  .fish-strip-item{
+    font-family:var(--font-mono);
+    font-size:13px;
+    font-weight:600;
+    color:rgba(255,255,255,0.75);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    flex-shrink:0;
+  }
+  @keyframes marquee{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+  }
+
+  /* ---- Stats bar ---- */
+  .stats-bar{
+    background:#fff;
+    border-bottom:3px solid var(--line);
+    padding:20px 0;
+  }
+  .stats-inner{
+    display:flex;
+    gap:0;
+    justify-content:space-around;
+    flex-wrap:wrap;
+  }
+  .stat-item{
+    text-align:center;
+    padding:12px 24px;
+    border-right:2px solid rgba(10,35,66,0.1);
+    flex:1;
+    min-width:140px;
+  }
+  .stat-item:last-child{ border-right:none; }
+  .stat-num{
+    font-family:var(--font-display);
+    font-size:28px;
+    font-weight:700;
+    color:var(--ocean-deep);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+  }
+  .stat-label{
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="wrap nav-inner">
-    <div class="logo"><span class="logo-mark" aria-hidden="true"></span>Ndott Store</div>
+    <div class="logo">
+      <span class="logo-icon">🎣</span>
+      Ndott Store
+    </div>
     <ul class="nav-links">
       <li><a href="#layanan">Layanan</a></li>
       <li><a href="#joki-afk">Joki AFK</a></li>
       <li><a href="#robux">Top Up Robux</a></li>
+      <li><a href="#gig">GIG</a></li>
       <li><a href="#pembayaran">Pembayaran</a></li>
+      <li><a href="#komunitas">Grup WA</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">Chat WA</a>
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">💬 Chat WA</a>
     </div>
   </div>
 </nav>
 
+<!-- HERO -->
 <header class="hero">
+  <div class="fish-deco f1">🐟</div>
+  <div class="fish-deco f2">🐠</div>
+  <div class="fish-deco f3">🎣</div>
+  <div class="fish-deco f4">🦈</div>
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+
   <div class="wrap hero-inner">
-    <span class="eyebrow">Roblox · Joki & Top Up</span>
-    <h1>Main lebih santai,<br>biar <span class="hl">Ndott Store</span> yang jokiin.</h1>
-    <p class="lede">Joki AFK harian sampai bulanan, dan top up Robux langsung lewat username — nggak perlu password. Proses cepat, harga jelas dari awal.</p>
+    <span class="eyebrow">🎮 Fish It! Roblox · Joki & Top Up</span>
+    <h1>AFK Fishing?<br>Biar <span class="hl">Ndott Store</span><br>yang jagain rod-mu.</h1>
+    <p class="lede">Joki AFK Fish It harian sampai bulanan — akun tetap online, fish tetap terkumpul. Plus top up Robux via username, tanpa perlu password.</p>
     <div class="hero-ctas">
-      <a class="blocky-btn blocky-btn--violet" href="#joki-afk">Lihat Harga Joki AFK</a>
-      <a class="blocky-btn blocky-btn--gold" href="#robux">Hitung Harga Robux</a>
+      <a class="blocky-btn blocky-btn--teal" href="#joki-afk">🎣 Lihat Harga Joki AFK</a>
+      <a class="blocky-btn blocky-btn--sand" href="#robux">💎 Hitung Harga Robux</a>
+      <a class="blocky-btn blocky-btn--coral" href="#gig">🎁 GIG Fish It</a>
     </div>
   </div>
-  <span class="cube hero-cube c1" aria-hidden="true"></span>
-  <span class="cube hero-cube c2" aria-hidden="true"></span>
-  <span class="cube hero-cube c3" aria-hidden="true"></span>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C200,80 400,0 600,40 C800,80 1000,10 1200,40 C1320,60 1380,55 1440,50 L1440,80 L0,80 Z" fill="#EAF4FB"/>
+    </svg>
+  </div>
 </header>
 
+<!-- FISH STRIP MARQUEE -->
+<div class="fish-strip" aria-hidden="true">
+  <div class="fish-strip-track">
+    <span class="fish-strip-item">🐟 Mythic Fish</span>
+    <span class="fish-strip-item">🎣 AFK Farming</span>
+    <span class="fish-strip-item">🪱 Bait Upgraded</span>
+    <span class="fish-strip-item">🏝️ Stingray Shores</span>
+    <span class="fish-strip-item">🦈 Legendary Catch</span>
+    <span class="fish-strip-item">⚡ Rod Enchanting</span>
+    <span class="fish-strip-item">💧 Deep Ocean</span>
+    <span class="fish-strip-item">🐡 Epic Rarity</span>
+    <span class="fish-strip-item">🌊 Coral Reef</span>
+    <span class="fish-strip-item">💎 Top Up Robux</span>
+    <!-- duplicate for seamless loop -->
+    <span class="fish-strip-item">🐟 Mythic Fish</span>
+    <span class="fish-strip-item">🎣 AFK Farming</span>
+    <span class="fish-strip-item">🪱 Bait Upgraded</span>
+    <span class="fish-strip-item">🏝️ Stingray Shores</span>
+    <span class="fish-strip-item">🦈 Legendary Catch</span>
+    <span class="fish-strip-item">⚡ Rod Enchanting</span>
+    <span class="fish-strip-item">💧 Deep Ocean</span>
+    <span class="fish-strip-item">🐡 Epic Rarity</span>
+    <span class="fish-strip-item">🌊 Coral Reef</span>
+    <span class="fish-strip-item">💎 Top Up Robux</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="wrap stats-inner">
+    <div class="stat-item">
+      <div class="stat-num">🎣 100+</div>
+      <div class="stat-label">Order selesai</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">⚡ 24/7</div>
+      <div class="stat-label">AFK aktif</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">🐟 No</div>
+      <div class="stat-label">Password diperlukan</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">💬 Fast</div>
+      <div class="stat-label">Respon via WA</div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYANAN -->
 <section id="layanan">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Layanan</span>
-      <h2>Dua hal yang paling sering dicari pemain Roblox</h2>
+      <span class="section-label">🏝️ Layanan</span>
+      <h2>Tiga layanan andalan untuk Fisher Roblox</h2>
+      <p>Dari AFK farming, top up Robux, sampai beli item in-game langsung — semua ada di sini.</p>
     </div>
-    <div class="layanan-grid">
-      <div class="layanan-card blocky">
+    <div class="layanan-grid layanan-grid--3">
+      <div class="layanan-card card-afk blocky">
+        <span class="layanan-icon">🎣</span>
         <span class="tag">Layanan 01</span>
-        <h3>Joki AFK</h3>
-        <p>Akun kamu tetap online dan AFK farming berjalan, kamu tinggal lanjutin aktivitas lain. Tersedia paket harian, mingguan, dan bulanan.</p>
+        <h3>Joki AFK Fish It</h3>
+        <p>Akun kamu tetap online dan auto-fishing berjalan. Coin & fish terkumpul, kamu bisa istirahat atau aktivitas lain. Tersedia paket harian, mingguan, dan bulanan.</p>
+        <div class="card-badges">
+          <span class="badge">🪱 Bait ready</span>
+          <span class="badge">⚡ 24 jam online</span>
+          <span class="badge">🐟 Auto catch</span>
+        </div>
       </div>
-      <div class="layanan-card blocky">
+      <div class="layanan-card card-robux blocky">
+        <span class="layanan-icon">💎</span>
         <span class="tag">Layanan 02</span>
         <h3>Top Up Robux via Username</h3>
-        <p>Robux masuk langsung ke akun lewat username, tanpa perlu kasih password. Harga berkelipatan tetap dari 100 Robux.</p>
+        <p>Robux masuk langsung ke akun lewat username — nggak perlu kasih password sama sekali. Beli rod baru, bait premium, atau boat upgrade di Fish It tanpa repot.</p>
+        <div class="card-badges">
+          <span class="badge">🔒 Aman</span>
+          <span class="badge">⚡ Proses cepat</span>
+          <span class="badge">🎮 Via username</span>
+        </div>
+      </div>
+      <div class="layanan-card card-gig blocky">
+        <span class="layanan-icon">🎁</span>
+        <span class="tag">Layanan 03</span>
+        <h3>GIG — Gift In Game</h3>
+        <p>Kami beliin item langsung di dalam game Fish It pakai akun kami. Kamu tinggal kasih tau item apa & berapa spin — kami yang proses. Rate Rp90 per 1 Robux.</p>
+        <div class="card-badges">
+          <span class="badge">🎯 Item langsung masuk</span>
+          <span class="badge">💰 Rp90/Robux</span>
+          <span class="badge">🔥 No login needed</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="joki-afk">
+<!-- JOKI AFK PRICING -->
+<section id="joki-afk" class="price-section">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Harga</span>
-      <h2>Paket Joki AFK</h2>
-      <p>Pilih durasi sesuai kebutuhan. Tinggal klik pesan, dan kami lanjut via WhatsApp.</p>
+      <span class="section-label">🪱 Harga Joki</span>
+      <h2>Paket Joki AFK Fish It</h2>
+      <p>Pilih durasi sesuai kebutuhan. Klik pesan, lanjut via WhatsApp — gampang banget.</p>
     </div>
     <div class="price-grid">
 
       <div class="price-card blocky">
+        <div class="price-card-emo">🪝</div>
         <span class="price-card-tag">1 Hari</span>
         <span class="dur">Cocok buat coba-coba</span>
         <span class="amount">Rp4.000</span>
-        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Hari (Rp4.000).">Pesan Sekarang</a>
+        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK Fish It paket 1 Hari (Rp4.000).">🎣 Pesan Sekarang</a>
       </div>
 
       <div class="price-card blocky is-popular">
+        <div class="popular-ribbon">TERLARIS</div>
+        <div class="price-card-emo">🐟</div>
         <span class="price-card-tag">1 Minggu</span>
         <span class="dur">Paling sering dipilih</span>
         <span class="amount">Rp20.000</span>
-        <a class="blocky-btn blocky-btn--gold" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Minggu (Rp20.000).">Pesan Sekarang</a>
+        <a class="blocky-btn blocky-btn--sand" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK Fish It paket 1 Minggu (Rp20.000).">🎣 Pesan Sekarang</a>
       </div>
 
       <div class="price-card blocky">
+        <div class="price-card-emo">🦈</div>
         <span class="price-card-tag">1 Bulan</span>
         <span class="dur">Paling hemat per hari</span>
         <span class="amount">Rp55.000</span>
-        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK paket 1 Bulan (Rp55.000).">Pesan Sekarang</a>
+        <a class="blocky-btn blocky-btn--ghost" href="#" data-wa-msg="Halo Ndott Store, saya mau order Joki AFK Fish It paket 1 Bulan (Rp55.000).">🎣 Pesan Sekarang</a>
       </div>
 
     </div>
   </div>
 </section>
 
-<section id="robux">
+<!-- ROBUX CALC -->
+<section id="robux" class="calc-section">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Kalkulator</span>
+      <span class="section-label">💎 Kalkulator</span>
       <h2>Top Up Robux via Username</h2>
-      <p>100 Robux = Rp15.000. Tinggal masukin jumlah Robux yang kamu mau, harga otomatis kehitung.</p>
+      <p>100 Robux = Rp15.000. Masukin jumlah Robux yang kamu mau, harga langsung terhitung.</p>
     </div>
 
     <div class="calc-wrap blocky">
       <div class="calc-left">
-        <h3>Berapa Robux yang kamu mau?</h3>
+        <h3>🎣 Berapa Robux yang kamu mau?</h3>
         <p>Pilih cepat di bawah, atau ketik sendiri jumlahnya.</p>
         <div class="quick-row" id="quickRow">
-          <button class="quick-btn" data-amount="100">100</button>
-          <button class="quick-btn" data-amount="300">300</button>
-          <button class="quick-btn" data-amount="500">500</button>
-          <button class="quick-btn" data-amount="1000">1000</button>
+          <button class="quick-btn" data-amount="100">💎 100</button>
+          <button class="quick-btn" data-amount="300">💎 300</button>
+          <button class="quick-btn" data-amount="500">💎 500</button>
+          <button class="quick-btn" data-amount="1000">💎 1000</button>
         </div>
         <div class="input-row">
           <label for="robuxInput">Jumlah</label>
@@ -530,57 +980,124 @@
         </div>
       </div>
       <div class="calc-right">
+        <div class="robux-icon">💎</div>
         <div class="label">Total harga</div>
         <div class="total" id="calcTotal">Rp15.000</div>
-        <a class="blocky-btn blocky-btn--wa" id="calcWaBtn" href="#" target="_blank" rel="noopener">Pesan via WhatsApp</a>
+        <a class="blocky-btn blocky-btn--wa" id="calcWaBtn" href="#" target="_blank" rel="noopener">💬 Pesan via WhatsApp</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="pembayaran">
+<!-- GIG CALCULATOR -->
+<section id="gig" class="gig-section">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Pembayaran</span>
-      <h2>Semua metode pembayaran kami terima</h2>
-      <p>Bayar pakai cara yang paling nyaman buat kamu.</p>
+      <span class="section-label">🎁 GIG</span>
+      <h2>Gift In Game — Beli Item Langsung di Fish It</h2>
+      <p>Ketik berapa Robux yang dibutuhkan untuk item/spin yang kamu mau, harga rupiah langsung terhitung. Rate: <strong>Rp90 per 1 Robux</strong>.</p>
     </div>
-    <div class="pay-chips">
-      <span class="pay-chip">QRIS</span>
-      <span class="pay-chip">Transfer Bank</span>
-      <span class="pay-chip">DANA</span>
-      <span class="pay-chip">OVO</span>
-      <span class="pay-chip">GoPay</span>
-      <span class="pay-chip">ShopeePay</span>
+
+    <div class="gig-wrap blocky">
+      <div class="calc-left">
+        <h3>🎁 Butuh berapa Robux?</h3>
+        <p>Contoh: ability spin Fish It = 49 Robux × jumlah spin yang kamu mau.</p>
+        <div class="gig-rate-info">
+          💡 Rate: <strong>Rp90 / Robux</strong> &nbsp;·&nbsp; 49 Robux × 1 spin = Rp4.410 &nbsp;·&nbsp; 490 Robux × 10 spin = Rp44.100
+        </div>
+        <div class="gig-quick-row" id="gigQuickRow">
+          <button class="gig-quick-btn" data-gig="49">🎯 49</button>
+          <button class="gig-quick-btn" data-gig="98">🎯 98</button>
+          <button class="gig-quick-btn" data-gig="490">🎯 490</button>
+          <button class="gig-quick-btn" data-gig="980">🎯 980</button>
+        </div>
+        <div class="gig-input-row">
+          <label for="gigInput">Robux</label>
+          <input type="number" id="gigInput" min="1" step="1" value="49" aria-label="Jumlah Robux GIG">
+          <span class="gig-unit">Robux</span>
+        </div>
+      </div>
+      <div class="gig-right">
+        <div class="gig-icon">🎁</div>
+        <div class="label">Total yang kamu bayar</div>
+        <div class="gig-robux-line" id="gigRobuxLine">49 Robux × Rp90</div>
+        <div class="total" id="gigTotal">Rp4.410</div>
+        <a class="blocky-btn blocky-btn--ocean" id="gigWaBtn" href="#" target="_blank" rel="noopener">💬 Pesan GIG via WA</a>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- PEMBAYARAN -->
+<section id="pembayaran" class="pay-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">💳 Pembayaran</span>
+      <h2>Semua metode pembayaran kami terima</h2>
+      <p>Bayar pakai cara yang paling nyaman buat kamu.</p>
+    </div>
+    <div class="pay-chips">
+      <span class="pay-chip"><span class="pay-chip-icon">🏦</span> QRIS</span>
+      <span class="pay-chip"><span class="pay-chip-icon">🏧</span> Transfer Bank</span>
+      <span class="pay-chip"><span class="pay-chip-icon">💙</span> DANA</span>
+      <span class="pay-chip"><span class="pay-chip-icon">💜</span> OVO</span>
+      <span class="pay-chip"><span class="pay-chip-icon">💚</span> GoPay</span>
+      <span class="pay-chip"><span class="pay-chip-icon">🛍️</span> ShopeePay</span>
+    </div>
+  </div>
+</section>
+
+<!-- KOMUNITAS -->
+<section id="komunitas">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-label">🌊 Komunitas</span>
+      <h2>Gabung Grup WhatsApp Ndott Store</h2>
+      <p>Info promo, update stok, dan harga terbaru kami share duluan di grup. Gratis, tinggal join.</p>
+    </div>
+    <div class="community-card">
+      <div>
+        <span class="tag">🎣 Grup Resmi Fisher</span>
+        <h3>Ndott Store Community</h3>
+        <p>Pantau promo terbaru dan tanya-tanya langsung sesama member Fish It & Roblox.</p>
+      </div>
+      <a class="blocky-btn blocky-btn--wa" href="https://chat.whatsapp.com/DHwvVGq3yGOGmkdkuZV23q" target="_blank" rel="noopener">🌊 Gabung Grup WA</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA KONTAK -->
 <section id="kontak">
   <div class="wrap">
-    <div class="cta-band">
+    <div class="cta-band blocky">
+      <span class="cta-bg-fish l">🐟</span>
+      <span class="cta-bg-fish r">🐟</span>
+      <span class="cta-band-emo">🎣</span>
       <h2>Order tinggal chat aja</h2>
       <p>Tanya paket, tanya harga, atau langsung order — kami balas cepat lewat WhatsApp.</p>
-      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">Chat WhatsApp Sekarang</a>
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">💬 Chat WhatsApp Sekarang</a>
       <div class="cta-phone">WhatsApp: <strong>0821-2486-7102</strong></div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="wrap">
-    © <span id="year"></span> Ndott Store. Joki AFK & Top Up Robux.
+  <div class="wrap footer-inner">
+    <div class="footer-logo">🎣 Ndott Store</div>
+    <div>© <span id="year"></span> Ndott Store. Joki AFK Fish It & Top Up Robux.</div>
   </div>
 </footer>
 
+<!-- FLOATING WA -->
 <a class="float-wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener" aria-label="Chat WhatsApp Ndott Store">
-  <span>Chat WA</span>
+  💬 <span>Chat WA</span>
 </a>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Static "Pesan Sekarang" buttons with prefilled WA message
+  // WA buttons
   document.querySelectorAll('[data-wa-msg]').forEach(function(btn){
     btn.addEventListener('click', function(e){
       e.preventDefault();
@@ -625,6 +1142,41 @@
 
   input.addEventListener('input', recalc);
   recalc();
+
+  // GIG calculator
+  var gigInput = document.getElementById('gigInput');
+  var gigTotal = document.getElementById('gigTotal');
+  var gigRobuxLine = document.getElementById('gigRobuxLine');
+  var gigWaBtn = document.getElementById('gigWaBtn');
+  var gigQuickBtns = document.querySelectorAll('.gig-quick-btn');
+  var GIG_RATE = 90;
+
+  function recalcGig(){
+    var robux = parseInt(gigInput.value, 10);
+    if (isNaN(robux) || robux < 1) robux = 0;
+    var price = robux * GIG_RATE;
+    gigRobuxLine.textContent = robux + ' Robux × Rp' + GIG_RATE;
+    gigTotal.textContent = formatRupiah(price);
+
+    gigQuickBtns.forEach(function(b){
+      b.classList.toggle('is-active', parseInt(b.getAttribute('data-gig'),10) === robux);
+    });
+
+    var msg = encodeURIComponent(
+      'Halo Ndott Store, saya mau order GIG (Gift In Game) sebesar ' + robux + ' Robux (' + formatRupiah(price) + '). Mohon info item yang tersedia.'
+    );
+    gigWaBtn.href = 'https://wa.me/6282124867102?text=' + msg;
+  }
+
+  gigQuickBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      gigInput.value = btn.getAttribute('data-gig');
+      recalcGig();
+    });
+  });
+
+  gigInput.addEventListener('input', recalcGig);
+  recalcGig();
 </script>
 
 </body>
