@@ -83,6 +83,7 @@
   .blocky-btn--wa{ background:var(--wa); color:#fff; }
   .blocky-btn--ghost{ background:var(--surface); color:var(--ink); }
   .blocky-btn--ocean{ background:var(--ocean-mid); color:#fff; }
+  .blocky-btn--blue{ background:var(--ocean-bright); color:#fff; }
 
   /* ---- Nav ---- */
   .nav{
@@ -322,7 +323,8 @@
     gap:24px;
   }
   .price-card{
-    background:var(--surface);
+    background:var(--ocean-deep);
+    color:#fff;
     padding:28px 24px;
     display:flex;
     flex-direction:column;
@@ -330,13 +332,10 @@
     position:relative;
     overflow:hidden;
   }
-  .price-card.is-popular{
-    background:var(--ocean-deep);
-    color:#fff;
-  }
+  .price-card-tag{ background:#EAF4FB; color:var(--ocean-deep); }
   .price-card.is-popular .price-card-tag{ background:var(--sand); color:var(--ink); }
-  .price-card.is-popular .dur{ color:rgba(255,255,255,0.7); }
-  .price-card.is-popular .amount{ color:var(--seafoam); }
+  .price-card .dur{ color:rgba(255,255,255,0.7); }
+  .price-card .amount{ color:var(--seafoam); }
   .price-card-emo{
     font-size:40px;
     line-height:1;
@@ -346,7 +345,6 @@
     font-family:var(--font-mono);
     font-size:12px;
     font-weight:700;
-    background:#EAF4FB;
     border:2px solid var(--line);
     border-radius:8px;
     padding:4px 10px;
@@ -355,13 +353,11 @@
     font-family:var(--font-display);
     font-size:18px;
     font-weight:600;
-    color:var(--ink-soft);
   }
   .price-card .amount{
     font-family:var(--font-mono);
     font-size:32px;
     font-weight:700;
-    color:var(--ocean-deep);
   }
   .popular-ribbon{
     position:absolute;
@@ -378,192 +374,86 @@
   }
   @media (max-width:900px){ .price-grid{ grid-template-columns:1fr; } }
 
-  /* ---- Robux calc ---- */
-  .calc-section{ background:#fff; }
-  .calc-wrap{
+  /* ---- Robux buttons ---- */
+  .robux-section{ background:#fff; }
+  .robux-wrap{
     background:linear-gradient(135deg, #EAF4FB 0%, #D0E8F5 100%);
     padding:40px;
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:40px;
-    align-items:center;
   }
-  .calc-left h3{
-    font-family:var(--font-display);
-    font-size:24px;
-    color:var(--ocean-deep);
-    margin-bottom:8px;
+  .robux-note{
     display:flex;
-    align-items:center;
-    gap:10px;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:28px;
   }
-  .calc-left p{ color:var(--ink-soft); font-size:15px; margin-bottom:20px; }
-  .quick-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
-  .quick-btn{
+  .robux-note span{
     font-family:var(--font-mono);
-    font-weight:600;
     font-size:13px;
+    font-weight:600;
     background:#fff;
     border:2px solid var(--line);
     border-radius:10px;
     padding:8px 14px;
-    transition:background .15s ease, color .15s ease;
-    display:flex;
+    display:inline-flex;
     align-items:center;
-    gap:5px;
+    gap:6px;
   }
-  .quick-btn:hover{ background:var(--sand); }
-  .quick-btn.is-active{ background:var(--ocean-mid); color:#fff; border-color:var(--ocean-mid); }
-
-  .input-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:#fff;
-    border:3px solid var(--line);
-    border-radius:12px;
-    padding:6px 6px 6px 16px;
+  .robux-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
   }
-  .input-row label{ font-family:var(--font-mono); font-size:13px; color:var(--ink-soft); white-space:nowrap; }
-  .input-row input{
-    flex:1;
-    border:none;
-    background:transparent;
-    font-family:var(--font-mono);
-    font-size:18px;
-    font-weight:700;
-    width:100%;
-    padding:10px 0;
-    color:var(--ink);
-  }
-  .input-row input:focus{ outline:none; }
-  .unit{ font-family:var(--font-mono); font-weight:600; color:var(--ink-soft); padding-right:10px; }
-
-  .calc-right{
+  .robux-card{
     background:var(--ocean-deep);
     border:3px solid var(--line);
     border-radius:var(--r-md);
-    padding:32px;
+    box-shadow: 5px 5px 0 var(--line);
+    padding:22px 16px;
     text-align:center;
-    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+    transition: transform .12s ease, box-shadow .12s ease;
+    position:relative;
+    overflow:hidden;
   }
-  .calc-right .robux-icon{ font-size:48px; margin-bottom:10px; }
-  .calc-right .label{
-    font-family:var(--font-mono);
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:.07em;
-    color:rgba(255,255,255,0.55);
-    margin-bottom:8px;
+  .robux-card:hover{ transform:translate(2px,2px); box-shadow:3px 3px 0 var(--line); }
+  .robux-card .robux-emo{ font-size:32px; margin-bottom:4px; }
+  .robux-card .robux-amt{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:20px;
+    color:#fff;
   }
-  .calc-right .total{
+  .robux-card .robux-price{
     font-family:var(--font-mono);
     font-weight:700;
-    font-size:36px;
+    font-size:16px;
     color:var(--seafoam);
-    margin-bottom:24px;
-    word-break:break-word;
-  }
-  @media (max-width:900px){ .calc-wrap{ grid-template-columns:1fr; padding:28px; } }
-
-  /* ---- GIG Calculator ---- */
-  .gig-section{ background:linear-gradient(180deg,#fff5f5 0%,#fff 100%); }
-  .gig-wrap{
-    background:linear-gradient(135deg,#1a0a00 0%,#2d1200 60%,#3a1800 100%);
-    padding:40px;
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:40px;
-    align-items:center;
-  }
-  .gig-wrap .calc-left h3{ color:#fff; }
-  .gig-wrap .calc-left p{ color:rgba(255,255,255,0.65); }
-  .gig-rate-info{
-    background:rgba(255,255,255,0.08);
-    border:2px solid rgba(255,107,107,0.5);
-    border-radius:12px;
-    padding:14px 18px;
-    margin-bottom:20px;
-    font-family:var(--font-mono);
-    font-size:13px;
-    color:rgba(255,255,255,0.8);
-    display:flex;
-    align-items:center;
-    gap:10px;
-  }
-  .gig-rate-info strong{ color:var(--sand); }
-  .gig-quick-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px; }
-  .gig-quick-btn{
-    font-family:var(--font-mono);
-    font-weight:600;
-    font-size:13px;
-    background:rgba(255,255,255,0.1);
-    border:2px solid rgba(255,255,255,0.25);
-    border-radius:10px;
-    padding:8px 14px;
-    color:#fff;
-    transition:background .15s ease;
-    display:flex;
-    align-items:center;
-    gap:5px;
-  }
-  .gig-quick-btn:hover{ background:rgba(255,107,107,0.4); }
-  .gig-quick-btn.is-active{ background:var(--coral); color:#fff; border-color:var(--coral-dark); }
-  .gig-input-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    background:rgba(255,255,255,0.1);
-    border:3px solid rgba(255,255,255,0.25);
-    border-radius:12px;
-    padding:6px 6px 6px 16px;
-  }
-  .gig-input-row label{ font-family:var(--font-mono); font-size:13px; color:rgba(255,255,255,0.55); white-space:nowrap; }
-  .gig-input-row input{
-    flex:1;
-    border:none;
-    background:transparent;
-    font-family:var(--font-mono);
-    font-size:18px;
-    font-weight:700;
-    width:100%;
-    padding:10px 0;
-    color:#fff;
-  }
-  .gig-input-row input:focus{ outline:none; }
-  .gig-unit{ font-family:var(--font-mono); font-weight:600; color:rgba(255,255,255,0.5); padding-right:10px; }
-  .gig-right{
-    background:var(--coral);
-    border:3px solid var(--line);
-    border-radius:var(--r-md);
-    padding:32px;
-    text-align:center;
-    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
-  }
-  .gig-right .gig-icon{ font-size:48px; margin-bottom:10px; }
-  .gig-right .label{
-    font-family:var(--font-mono);
-    font-size:12px;
-    text-transform:uppercase;
-    letter-spacing:.07em;
-    color:rgba(255,255,255,0.7);
-    margin-bottom:4px;
-  }
-  .gig-right .gig-robux-line{
-    font-family:var(--font-mono);
-    font-size:14px;
-    color:rgba(255,255,255,0.8);
     margin-bottom:8px;
   }
-  .gig-right .total{
-    font-family:var(--font-mono);
-    font-weight:700;
-    font-size:36px;
-    color:#fff;
-    margin-bottom:24px;
-    word-break:break-word;
+  .robux-card .robux-order-btn{
+    width:100%;
+    justify-content:center;
+    padding:10px 12px;
+    font-size:14px;
   }
-  @media (max-width:900px){ .gig-wrap{ grid-template-columns:1fr; padding:28px; } }
+  .robux-card.is-popular .robux-ribbon{
+    position:absolute;
+    top:12px; right:-26px;
+    background:var(--seafoam);
+    color:var(--ink);
+    font-family:var(--font-mono);
+    font-size:9px;
+    font-weight:700;
+    padding:3px 30px;
+    transform:rotate(35deg);
+    border:2px solid var(--line);
+    letter-spacing:.06em;
+  }
+  @media (max-width:900px){ .robux-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:900px){ .robux-wrap{ padding:28px; } }
 
   /* ---- Payment ---- */
   .pay-section{ background:linear-gradient(180deg, #D0EAFA 0%, #EAF4FB 100%); }
@@ -581,6 +471,50 @@
     box-shadow:3px 3px 0 var(--line);
   }
   .pay-chip-icon{ font-size:18px; }
+
+  /* ---- Testimoni ---- */
+  .testi-section{ background:linear-gradient(180deg,#EAF4FB 0%,#fff 100%); }
+  .testi-card{
+    background:linear-gradient(135deg, var(--teal), var(--ocean-mid));
+    border:3px solid var(--line);
+    border-radius:var(--r-lg);
+    padding:44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    box-shadow: var(--shadow-off) var(--shadow-off) 0 var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .testi-card::after{
+    content:'⭐';
+    position:absolute;
+    right:200px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:80px;
+    opacity:0.1;
+    pointer-events:none;
+  }
+  .testi-card .tag{
+    font-family:var(--font-mono);
+    font-size:11px;
+    font-weight:600;
+    color:var(--seafoam);
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin-bottom:8px;
+    display:block;
+  }
+  .testi-card h3{
+    font-family:var(--font-display);
+    font-size:24px;
+    color:#fff;
+    margin-bottom:8px;
+  }
+  .testi-card p{ color:rgba(255,255,255,0.8); font-size:15px; }
 
   /* ---- Community ---- */
   .community-card{
@@ -782,12 +716,12 @@
       <li><a href="#layanan">Layanan</a></li>
       <li><a href="#joki-afk">Joki AFK</a></li>
       <li><a href="#robux">Top Up Robux</a></li>
-      <li><a href="#gig">GIG</a></li>
       <li><a href="#pembayaran">Pembayaran</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
       <li><a href="#komunitas">Grup WA</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">💬 Chat WA</a>
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6285142059116" target="_blank" rel="noopener">💬 Chat WA</a>
     </div>
   </div>
 </nav>
@@ -808,8 +742,7 @@
     <p class="lede">Joki AFK Fish It harian sampai bulanan — akun tetap online, fish tetap terkumpul. Plus top up Robux via username, tanpa perlu password.</p>
     <div class="hero-ctas">
       <a class="blocky-btn blocky-btn--teal" href="#joki-afk">🎣 Lihat Harga Joki AFK</a>
-      <a class="blocky-btn blocky-btn--sand" href="#robux">💎 Hitung Harga Robux</a>
-      <a class="blocky-btn blocky-btn--coral" href="#gig">🎁 GIG Fish It</a>
+      <a class="blocky-btn blocky-btn--sand" href="#robux">💎 Lihat Harga Robux</a>
     </div>
   </div>
 
@@ -874,10 +807,10 @@
   <div class="wrap">
     <div class="section-head">
       <span class="section-label">🏝️ Layanan</span>
-      <h2>Tiga layanan andalan untuk Fisher Roblox</h2>
-      <p>Dari AFK farming, top up Robux, sampai beli item in-game langsung — semua ada di sini.</p>
+      <h2>Dua layanan andalan untuk Fisher Roblox</h2>
+      <p>Dari AFK farming sampai top up Robux — semua ada di sini.</p>
     </div>
-    <div class="layanan-grid layanan-grid--3">
+    <div class="layanan-grid">
       <div class="layanan-card card-afk blocky">
         <span class="layanan-icon">🎣</span>
         <span class="tag">Layanan 01</span>
@@ -898,17 +831,6 @@
           <span class="badge">🔒 Aman</span>
           <span class="badge">⚡ Proses cepat</span>
           <span class="badge">🎮 Via username</span>
-        </div>
-      </div>
-      <div class="layanan-card card-gig blocky">
-        <span class="layanan-icon">🎁</span>
-        <span class="tag">Layanan 03</span>
-        <h3>GIG — Gift In Game</h3>
-        <p>Kami beliin item langsung di dalam game Fish It pakai akun kami. Kamu tinggal kasih tau item apa & berapa spin — kami yang proses. Rate Rp90 per 1 Robux.</p>
-        <div class="card-badges">
-          <span class="badge">🎯 Item langsung masuk</span>
-          <span class="badge">💰 Rp90/Robux</span>
-          <span class="badge">🔥 No login needed</span>
         </div>
       </div>
     </div>
@@ -954,69 +876,70 @@
   </div>
 </section>
 
-<!-- ROBUX CALC -->
-<section id="robux" class="calc-section">
+<!-- ROBUX PILIHAN -->
+<section id="robux" class="robux-section">
   <div class="wrap">
     <div class="section-head">
-      <span class="section-label">💎 Kalkulator</span>
+      <span class="section-label">💎 Top Up Robux</span>
       <h2>Top Up Robux via Username</h2>
-      <p>100 Robux = Rp15.000. Masukin jumlah Robux yang kamu mau, harga langsung terhitung.</p>
+      <p>Tinggal pilih jumlah Robux, langsung lanjut order lewat WhatsApp.</p>
     </div>
 
-    <div class="calc-wrap blocky">
-      <div class="calc-left">
-        <h3>🎣 Berapa Robux yang kamu mau?</h3>
-        <p>Pilih cepat di bawah, atau ketik sendiri jumlahnya.</p>
-        <div class="quick-row" id="quickRow">
-          <button class="quick-btn" data-amount="100">💎 100</button>
-          <button class="quick-btn" data-amount="300">💎 300</button>
-          <button class="quick-btn" data-amount="500">💎 500</button>
-          <button class="quick-btn" data-amount="1000">💎 1000</button>
-        </div>
-        <div class="input-row">
-          <label for="robuxInput">Jumlah</label>
-          <input type="number" id="robuxInput" min="100" step="100" value="100" aria-label="Jumlah Robux">
-          <span class="unit">Robux</span>
-        </div>
+    <div class="robux-wrap blocky">
+      <div class="robux-note">
+        <span>💡 Di bawah 100 Robux: Rp160/Robux</span>
+        <span>💎 100 Robux ke atas: Rp150/Robux</span>
       </div>
-      <div class="calc-right">
-        <div class="robux-icon">💎</div>
-        <div class="label">Total harga</div>
-        <div class="total" id="calcTotal">Rp15.000</div>
-        <a class="blocky-btn blocky-btn--wa" id="calcWaBtn" href="#" target="_blank" rel="noopener">💬 Pesan via WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GIG CALCULATOR -->
-<section id="gig" class="gig-section">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="section-label">🎁 GIG</span>
-      <h2>Gift In Game — Beli Item Langsung di Fish It</h2>
-      <p>Ketik berapa Robux yang dibutuhkan untuk item/spin yang kamu mau, harga rupiah langsung terhitung. Rate: <strong>Rp90 per 1 Robux</strong>.</p>
-    </div>
-
-    <div class="gig-wrap blocky">
-      <div class="calc-left">
-        <h3>🎁 Butuh berapa Robux?</h3>
-        <p>Contoh: Jumlah robux yang di perlukan x 90 rupiah.</p>
-        <div class="gig-rate-info">
-          💡 Rate: <strong>Rp90 / Robux</strong> &nbsp;·&nbsp; 490 Robux × 90 rupiah = Rp44.100
+      <div class="robux-grid">
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">25 Robux</span>
+          <span class="robux-price">Rp4.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 25 Robux via username (Rp4.000).">Pesan</a>
         </div>
-        <div class="gig-input-row">
-          <label for="gigInput">Robux</label>
-          <input type="number" id="gigInput" min="1" step="1" value="49" aria-label="Jumlah Robux GIG">
-          <span class="gig-unit">Robux</span>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">50 Robux</span>
+          <span class="robux-price">Rp8.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 50 Robux via username (Rp8.000).">Pesan</a>
         </div>
-      </div>
-      <div class="gig-right">
-        <div class="gig-icon">🎁</div>
-        <div class="label">Total yang kamu bayar</div>
-        <div class="gig-robux-line" id="gigRobuxLine">490 Robux × Rp90</div>
-        <div class="total" id="gigTotal">Rp44.100</div>
-        <a class="blocky-btn blocky-btn--ocean" id="gigWaBtn" href="#" target="_blank" rel="noopener">💬 Pesan GIG via WA</a>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">75 Robux</span>
+          <span class="robux-price">Rp12.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 75 Robux via username (Rp12.000).">Pesan</a>
+        </div>
+        <div class="robux-card is-popular">
+          <span class="robux-ribbon">TERLARIS</span>
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">100 Robux</span>
+          <span class="robux-price">Rp15.000</span>
+          <a class="blocky-btn blocky-btn--sand robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 100 Robux via username (Rp15.000).">Pesan</a>
+        </div>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">200 Robux</span>
+          <span class="robux-price">Rp30.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 200 Robux via username (Rp30.000).">Pesan</a>
+        </div>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">300 Robux</span>
+          <span class="robux-price">Rp45.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 300 Robux via username (Rp45.000).">Pesan</a>
+        </div>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">500 Robux</span>
+          <span class="robux-price">Rp75.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 500 Robux via username (Rp75.000).">Pesan</a>
+        </div>
+        <div class="robux-card">
+          <span class="robux-emo">💎</span>
+          <span class="robux-amt">1000 Robux</span>
+          <span class="robux-price">Rp150.000</span>
+          <a class="blocky-btn blocky-btn--ghost robux-order-btn" href="#" data-wa-msg="Halo Ndott Store, saya mau top up 1000 Robux via username (Rp150.000).">Pesan</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1037,6 +960,20 @@
       <span class="pay-chip"><span class="pay-chip-icon">💜</span> OVO</span>
       <span class="pay-chip"><span class="pay-chip-icon">💚</span> GoPay</span>
       <span class="pay-chip"><span class="pay-chip-icon">🛍️</span> ShopeePay</span>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni" class="testi-section">
+  <div class="wrap">
+    <div class="testi-card">
+      <div>
+        <span class="tag">⭐ Kata Mereka</span>
+        <h3>Penasaran dengan apa kata pelanggan kami?</h3>
+        <p>Klik tombol berikut untuk lihat testimoni langsung dari pelanggan Ndott Store.</p>
+      </div>
+      <a class="blocky-btn blocky-btn--sand" href="https://ndakdulu.my.id/testi" target="_blank" rel="noopener">⭐ Lihat Testimoni</a>
     </div>
   </div>
 </section>
@@ -1069,8 +1006,8 @@
       <span class="cta-band-emo">🎣</span>
       <h2>Order tinggal chat aja</h2>
       <p>Tanya paket, tanya harga, atau langsung order — kami balas cepat lewat WhatsApp.</p>
-      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener">💬 Chat WhatsApp Sekarang</a>
-      <div class="cta-phone">WhatsApp: <strong>0821-2486-7102</strong></div>
+      <a class="blocky-btn blocky-btn--wa" href="https://wa.me/6285142059116" target="_blank" rel="noopener">💬 Chat WhatsApp Sekarang</a>
+      <div class="cta-phone">WhatsApp: <strong>0851-4205-9116</strong></div>
     </div>
   </div>
 </section>
@@ -1084,7 +1021,7 @@
 </footer>
 
 <!-- FLOATING WA -->
-<a class="float-wa" href="https://wa.me/6282124867102" target="_blank" rel="noopener" aria-label="Chat WhatsApp Ndott Store">
+<a class="float-wa" href="https://wa.me/6285142059116" target="_blank" rel="noopener" aria-label="Chat WhatsApp Ndott Store">
   💬 <span>Chat WA</span>
 </a>
 
@@ -1096,81 +1033,9 @@
     btn.addEventListener('click', function(e){
       e.preventDefault();
       var msg = encodeURIComponent(btn.getAttribute('data-wa-msg'));
-      window.open('https://wa.me/6282124867102?text=' + msg, '_blank', 'noopener');
+      window.open('https://wa.me/6285142059116?text=' + msg, '_blank', 'noopener');
     });
   });
-
-  // Robux calculator
-  var input = document.getElementById('robuxInput');
-  var total = document.getElementById('calcTotal');
-  var waBtn = document.getElementById('calcWaBtn');
-  var quickBtns = document.querySelectorAll('.quick-btn');
-  var PRICE_PER_100 = 15000;
-
-  function formatRupiah(n){
-    return 'Rp' + n.toLocaleString('id-ID');
-  }
-
-  function recalc(){
-    var robux = parseInt(input.value, 10);
-    if (isNaN(robux) || robux < 0) robux = 0;
-    var price = Math.round((robux / 100) * PRICE_PER_100);
-    total.textContent = formatRupiah(price);
-
-    quickBtns.forEach(function(b){
-      b.classList.toggle('is-active', parseInt(b.getAttribute('data-amount'),10) === robux);
-    });
-
-    var msg = encodeURIComponent(
-      'Halo Ndott Store, saya mau top up ' + robux + ' Robux via username (' + formatRupiah(price) + ').'
-    );
-    waBtn.href = 'https://wa.me/6282124867102?text=' + msg;
-  }
-
-  quickBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      input.value = btn.getAttribute('data-amount');
-      recalc();
-    });
-  });
-
-  input.addEventListener('input', recalc);
-  recalc();
-
-  // GIG calculator
-  var gigInput = document.getElementById('gigInput');
-  var gigTotal = document.getElementById('gigTotal');
-  var gigRobuxLine = document.getElementById('gigRobuxLine');
-  var gigWaBtn = document.getElementById('gigWaBtn');
-  var gigQuickBtns = document.querySelectorAll('.gig-quick-btn');
-  var GIG_RATE = 90;
-
-  function recalcGig(){
-    var robux = parseInt(gigInput.value, 10);
-    if (isNaN(robux) || robux < 1) robux = 0;
-    var price = robux * GIG_RATE;
-    gigRobuxLine.textContent = robux + ' Robux × Rp' + GIG_RATE;
-    gigTotal.textContent = formatRupiah(price);
-
-    gigQuickBtns.forEach(function(b){
-      b.classList.toggle('is-active', parseInt(b.getAttribute('data-gig'),10) === robux);
-    });
-
-    var msg = encodeURIComponent(
-      'Halo Ndott Store, saya mau order GIG (Gift In Game) sebesar ' + robux + ' Robux (' + formatRupiah(price) + '). Mohon info item yang tersedia.'
-    );
-    gigWaBtn.href = 'https://wa.me/6282124867102?text=' + msg;
-  }
-
-  gigQuickBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      gigInput.value = btn.getAttribute('data-gig');
-      recalcGig();
-    });
-  });
-
-  gigInput.addEventListener('input', recalcGig);
-  recalcGig();
 </script>
 
 </body>
